@@ -1,5 +1,5 @@
-name: "Parallel Bash Commands"
-description: "Executes a list of bash commands in parallel and waits for them all to successfully complete"
+name: "Distributed Task Runner"
+description: "Executes a list of tasks via bash in parallel."
 
 runs:
   using: "composite"
@@ -12,12 +12,11 @@ runs:
     - run: ${{ github.action_path }}/run.sh '${{ steps.setParallelCommands.outputs.commands }}'
       shell: bash
 
-# Github actions are currently only able to accept strings as inputs to we have explicitly handle a certain number of
-# inputs that the user might reasonably expect to run in parallel. For now, we explicitly handle 10 commands as inputs.
+# Github actions are currently only able to accept strings as inputs to we have explicitly handle a certain number
 inputs:
   cmd1:
     description: "Bash command"
-    required: true # We should really have at least one command for the action to even do anything at all...
+    required: true
   cmd2:
     description: "Bash command"
     required: false
